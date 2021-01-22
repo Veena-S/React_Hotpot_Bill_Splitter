@@ -36,7 +36,8 @@ if (env === 'production') {
 db.Bill = billModel(sequelize, Sequelize.DataTypes);
 db.Person = personModel(sequelize, Sequelize.DataTypes);
 
-db.Bill.belongsToMany(db.Person);
+// db.Bill.belongsToMany(db.Person);
+db.Person.belongsTo(db.Bill);
 db.Bill.hasMany(db.Person);
 
 db.sequelize = sequelize;
