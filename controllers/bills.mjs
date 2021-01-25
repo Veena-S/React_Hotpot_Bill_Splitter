@@ -18,7 +18,18 @@ export default function billsController(db) {
     }
   };
 
+  const setTotal = async (request, response) => {
+    try {
+      const bill = await db.Bill.findByPk(request.body.id);
+      await bill.update({ total: request.body.total });
+      response.send(bill);
+    }
+    catch (error) {
+      response.status(500).send(error);
+    }
+  };
+
   return {
-    index, createBill,
+    index, createBill, setTotal,
   };
 }

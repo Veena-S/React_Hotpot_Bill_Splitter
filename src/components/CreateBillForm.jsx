@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function CreateBillForm() {
+export default function CreateBillForm({ sendNewBillData }) {
   const [billName, setBillName] = useState('');
 
   function handleBillNameChange(event) {
@@ -12,6 +12,7 @@ export default function CreateBillForm() {
     axios.post('/createBill', { name: billName })
       .then((responseData) => {
         console.log(responseData.data);
+        sendNewBillData(responseData.data);
       })
       .catch((error) => {
         console.log(error);
